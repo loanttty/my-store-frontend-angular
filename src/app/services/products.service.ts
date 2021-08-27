@@ -1,5 +1,4 @@
 import { HttpClient } from '@angular/common/http';
-import { ThrowStmt } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Product } from '../models/Product';
@@ -24,6 +23,22 @@ export class ProductsService {
 
   getCardedItems(): Product[] {
     return this.cartedItems
+  }
+
+  updateCartedItem(productId: number,inCartQty: number) {
+    
+    for (let item of this.cartedItems) {
+      if (item.id === productId) {
+        item.inCartQty = inCartQty
+      }
+    }
+    console.log(this.cartedItems)
+    
+  }
+
+  deleteCartedItem(toBeDeletedItem: Product) {
+    this.cartedItems = this.cartedItems.filter( item => item.id !== toBeDeletedItem.id)
+    console.log(this.cartedItems)
   }
 
 }

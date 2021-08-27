@@ -12,6 +12,7 @@ export class ProductItemComponent implements OnInit {
   @Input() product: Product
 
   selectedQty: number = 0
+  cartedItems: Product[] = []
 
   constructor(private productsService:ProductsService) { 
     this.product = {
@@ -26,6 +27,7 @@ export class ProductItemComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.cartedItems = this.productsService.getCardedItems()
   }
 
   decrement() {
@@ -37,7 +39,16 @@ export class ProductItemComponent implements OnInit {
   }
 
   addToCart(product: Product) {
-    this.productsService.addProductToCart(product,this.selectedQty)
+    if (this.selectedQty === 0) {
+      alert("Please select product quantity")
+    } else {
+      const inCartedCheck = this.cartedItems.filter ( item => item.id === product.id)
+      if (inCartedCheck.length === 0 ) {
+        this.productsService.addProductToCart(product,this.selectedQty)
+      } else {
+        this.productsService.updateCartedItem(product.id,this.selectedQty)
+      }
+    }
   }
 
 }

@@ -1,1 +1,10 @@
-<p>cart-item works!</p>
+<div>
+    <h2>{{cartedItem.name}}</h2>
+    <p>{{cartedItem.description}}</p>
+    <p>${{cartedItem.price}}</p>
+    <button (click)="decrement(cartedItem)">-</button>
+    <p>{{inCartQty === 0 ? cartedItem.inCartQty : inCartQty}}</p>
+    <button (click)="increment(cartedItem)">+</button>
+    <p>How much? {{inCartQty === 0 ? (cartedItem.inCartQty * cartedItem.price) : inCartQty * cartedItem.price}}</p>
+    <button (click)="deleteFromCart(cartedItem)">Delete</button>
+</div>

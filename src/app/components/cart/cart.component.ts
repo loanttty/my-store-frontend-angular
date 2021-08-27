@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/models/Product';
-import { Observable } from 'rxjs';
 import { ProductsService } from 'src/app/services/products.service';
 
 @Component({
@@ -10,7 +9,6 @@ import { ProductsService } from 'src/app/services/products.service';
 })
 export class CartComponent implements OnInit {
   cartedItems: Product[] = []
-  inCartQty: number = 0
 
   constructor(private productsService:ProductsService) { }
 
@@ -19,18 +17,10 @@ export class CartComponent implements OnInit {
     console.log(this.cartedItems)
   }
 
-  decrement(inCartQtyChange: number) {
-    this.inCartQty = inCartQtyChange
-    return this.inCartQty > 0 ? this.inCartQty -=1 : this.inCartQty
-  }
-  
-  increment(inCartQtyChange: number) {
-    this.inCartQty = inCartQtyChange
-    return this.inCartQty +=1
-  }
-
-  deleteFromCart(toBeDeletedItem: Product) {
-    this.cartedItems.filter( item => item.id !== toBeDeletedItem.id)
+  deleteItem(toBeDeletedItem: Product): void {
+    console.log(toBeDeletedItem)
+    this.cartedItems = this.cartedItems.filter(item => item.id !== toBeDeletedItem.id)
+    this.productsService.deleteCartedItem(toBeDeletedItem)
   }
 
 }
