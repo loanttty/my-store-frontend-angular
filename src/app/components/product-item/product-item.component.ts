@@ -20,7 +20,8 @@ export class ProductItemComponent implements OnInit {
         price: 1,
         url: "",
         description: "",
-        inStockQty: 1
+        inStockQty: 1,
+        inCartQty: 0
     }
   }
 

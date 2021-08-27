@@ -17,7 +17,7 @@ export class ProductsService {
   }
 
   addProductToCart(product: Product, selectedQty: number) {
-    product["selectedQty"] = selectedQty
+    product["inCartQty"] = selectedQty
     this.cartedItems.push(product)
     console.log(this.cartedItems)
   }

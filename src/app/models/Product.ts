@@ -5,7 +5,7 @@ export class Product {
       url: string;
       description: string;
       inStockQty: number;
-      selectedQty?: number
+      inCartQty: number
 
     constructor() {
         this.id = 1;
@@ -14,7 +14,7 @@ export class Product {
         this.url = "";
         this.description = "";
         this.inStockQty = 1;
-        this.selectedQty = 0
+        this.inCartQty = 0
     }
 
 }

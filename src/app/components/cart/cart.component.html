@@ -1,1 +1,11 @@
-<p>cart works!</p>
+<h1>Your cart</h1>
+<div *ngFor="let cartedItem of cartedItems">
+    <h2>{{cartedItem.name}}</h2>
+    <p>{{cartedItem.description}}</p>
+    <p>${{cartedItem.price}}</p>
+    <button (click)="decrement(cartedItem.inCartQty)">-</button>
+    <p>{{inCartQty === 0 ? cartedItem.inCartQty : inCartQty}}</p>
+    <button (click)="increment(cartedItem.inCartQty)">+</button>
+    <p>How much? {{inCartQty === 0 ? (cartedItem.inCartQty * cartedItem.price) : inCartQty * cartedItem.price}}</p>
+    <button (click)="deleteFromCart(cartedItem)">Delete</button>
+</div>
