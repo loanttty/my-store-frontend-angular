@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Product } from 'src/app/models/Product';
 import { ProductsService } from 'src/app/services/products.service';
 
@@ -9,18 +10,38 @@ import { ProductsService } from 'src/app/services/products.service';
 })
 export class CartComponent implements OnInit {
   cartedItems: Product[] = []
+  total: number
 
-  constructor(private productsService:ProductsService) { }
+  constructor(private productsService:ProductsService, private router: Router) { 
+    this.total = 0
+  }
 
   ngOnInit(): void {
     this.cartedItems = this.productsService.getCardedItems()
     console.log(this.cartedItems)
+    for (let i = 0; i < this.cartedItems.length; i++) {
+      this.total = this.total + this.cartedItems[i].price * this.cartedItems[i].inCartQty
+    }
   }
 
   deleteItem(toBeDeletedItem: Product): void {
-    console.log(toBeDeletedItem)
     this.cartedItems = this.cartedItems.filter(item => item.id !== toBeDeletedItem.id)
     this.productsService.deleteCartedItem(toBeDeletedItem)
+
+    for (let i = 0; i < this.cartedItems.length; i++) {
+      this.total = 0
+      this.total = this.total + this.cartedItems[i].price * this.cartedItems[i].inCartQty
+    }
+  }
+
+  ngDoCheck(): void {
+    if (this.cartedItems.length === 0) {
+        this.total = 0
+    }
+  }
+
+  checkout() {
+    this.router.navigate(['/confirmation'])
   }
 
 }

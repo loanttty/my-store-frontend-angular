@@ -1,2 +1,7 @@
 <h1>Your cart</h1>
 <app-cart-item *ngFor="let cartedItem of cartedItems" [cartedItem]="cartedItem" (deleteItem)="deleteItem($event)" ></app-cart-item>
+<div *ngIf="total > 0; else emptyCart">
+    <h3>Total:{{total | number: '1.1-2'}}</h3>
+    <button (click)="checkout()">Check Out</button>
+</div>
+<ng-template #emptyCart>There is no item in your cart. Click <a href="">here</a> to continue shopping.</ng-template>

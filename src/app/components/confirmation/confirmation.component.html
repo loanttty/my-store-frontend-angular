@@ -1,1 +1,33 @@
-<p>confirmation works!</p>
+<h1>Your Order</h1>
+<ul *ngFor="let item of orderedItems">
+    <li>
+        <h3>{{item.name}}</h3>
+        <p>Quantity: {{item.inCartQty}}</p>
+        <p>Sub total: {{item.inCartQty*item.price}}</p>
+    </li>
+</ul>
+<div *ngIf="total > 0">
+    <h3>Total: {{total}}</h3>
+</div>
+
+<div>
+    <h3>For Delivery</h3>
+    <form #form="ngForm">
+        <input
+        type="text" 
+        name="firstName" 
+        required 
+        minlength="30" 
+        [(ngModel)]="firstName" 
+        #blogTitle="ngModel">
+        >
+        <input
+        type="text" 
+        name="lastName" 
+        required 
+        minlength="30" 
+        [(ngModel)]="lastName" 
+        #blogTitle="ngModel">
+        >
+    </form>
+</div>
