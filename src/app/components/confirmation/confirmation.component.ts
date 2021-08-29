@@ -11,6 +11,10 @@ export class ConfirmationComponent implements OnInit {
   orderedItems: Product[] = []
   total = 0
 
+  firstName: string
+  lasstName: string
+  address: string
+
   constructor(private productsService:ProductsService) {
     this.total = 0
    }
