@@ -11,6 +11,7 @@ export class CartItemComponent implements OnInit {
   
   @Input() cartedItem: Product
   @Output() deleteItem: EventEmitter<Product> = new EventEmitter()
+  @Output() changeInCart: EventEmitter<number> = new EventEmitter()
 
   inCartQty: number = 0
   
@@ -33,14 +34,14 @@ export class CartItemComponent implements OnInit {
     this.inCartQty = product.inCartQty
     this.inCartQty > 0 ? this.inCartQty -=1 : this.inCartQty
     this.productsService.updateCartedItem(product.id,this.inCartQty)
-    return this.inCartQty
+    this.changeInCart.emit(this.inCartQty)
   }
   
   increment(product: Product) {
     this.inCartQty = product.inCartQty
     this.inCartQty +=1
     this.productsService.updateCartedItem(product.id,this.inCartQty)
-    return this.inCartQty
+    this.changeInCart.emit(this.inCartQty)
   }
 
   deleteFromCart(toBeDeletedItem: Product): void {

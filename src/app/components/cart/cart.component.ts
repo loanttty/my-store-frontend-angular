@@ -11,9 +11,11 @@ import { ProductsService } from 'src/app/services/products.service';
 export class CartComponent implements OnInit {
   cartedItems: Product[] = []
   total: number
+  inCartChange: number
 
   constructor(private productsService:ProductsService, private router: Router) { 
     this.total = 0
+    this.inCartChange = 0
   }
 
   ngOnInit(): void {
@@ -31,6 +33,15 @@ export class CartComponent implements OnInit {
     for (let i = 0; i < this.cartedItems.length; i++) {
       this.total = 0
       this.total = this.total + this.cartedItems[i].price * this.cartedItems[i].inCartQty
+    }
+  }
+
+  changeInCart(prodQty:number): void {
+    if (this.inCartChange !== prodQty) {
+      this.total = 0
+      for (let i = 0; i < this.cartedItems.length; i++) {
+        this.total = this.total + this.cartedItems[i].price * this.cartedItems[i].inCartQty
+      }
     }
   }
 

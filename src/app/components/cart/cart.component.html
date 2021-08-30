@@ -1,5 +1,9 @@
 <h1>Your cart</h1>
-<app-cart-item *ngFor="let cartedItem of cartedItems" [cartedItem]="cartedItem" (deleteItem)="deleteItem($event)" ></app-cart-item>
+<app-cart-item *ngFor="let cartedItem of cartedItems" 
+                [cartedItem]="cartedItem" 
+                (deleteItem)="deleteItem($event)"
+                (changeInCart)="changeInCart($event)"
+                ></app-cart-item>
 <div *ngIf="total > 0; else emptyCart">
     <h3>Total:{{total | number: '1.1-2'}}</h3>
     <button (click)="checkout()">Check Out</button>

@@ -1,33 +1,32 @@
-<h1>Your Order</h1>
-<ul *ngFor="let item of orderedItems">
-    <li>
-        <h3>{{item.name}}</h3>
-        <p>Quantity: {{item.inCartQty}}</p>
-        <p>Sub total: {{item.inCartQty*item.price}}</p>
-    </li>
-</ul>
-<div *ngIf="total > 0">
-    <h3>Total: {{total}}</h3>
+<div *ngIf="confirmedOrder === false" else orderConfirmation>
+    <h1>Your Order</h1>
+    <ul *ngFor="let item of orderedItems">
+        <li>
+            <h3>{{item.name}}</h3>
+            <p>Quantity: {{item.inCartQty}}</p>
+            <p>Sub total: {{item.inCartQty*item.price}}</p>
+        </li>
+    </ul>
+    <div *ngIf="total > 0" else noOrder>
+        <h3>Total: {{total}}</h3>
+        <div>
+            <h3>For Delivery</h3>
+            <form #form="ngForm" (ngSubmit)="submitOrder()">
+                <input type="text" name="firstName" required minlength="20" [(ngModel)]="firstName" placeholder="First Name">
+                >
+                <input type="text" name="address" required minlength="20" [(ngModel)]="address" placeholder="Address">
+                >
+                <input type="text" name="creditCardNumber" required minlength="16" [(ngModel)]="cardNumber" placeholder="Credit Card Number">
+                >
+                <input type="submit" [disabled]="form.invalid" value="Submit">
+            </form>
+        </div>
+        <ng-template #noOrder>There is no order.</ng-template>
+    </div>
 </div>
-
-<div>
-    <h3>For Delivery</h3>
-    <form #form="ngForm">
-        <input
-        type="text" 
-        name="firstName" 
-        required 
-        minlength="30" 
-        [(ngModel)]="firstName" 
-        #blogTitle="ngModel">
-        >
-        <input
-        type="text" 
-        name="lastName" 
-        required 
-        minlength="30" 
-        [(ngModel)]="lastName" 
-        #blogTitle="ngModel">
-        >
-    </form>
-</div>
+<ng-template #orderConfirmation>
+    <div>
+        Thanks, {{firstName}}! Your order of {{total}} has been confirmed.
+        Please allow us 3 to 5 working days to process your order!
+    </div>
+</ng-template>
