@@ -11,7 +11,6 @@ const routes: Routes = [
   {path:'cart',component: CartComponent},
   {path:'product/:id',component: ProductItemDetailComponent},
   {path:'confirmation',component: ConfirmationComponent} 
-  //new component to view confirmed orders?
 ];
 
 @NgModule({

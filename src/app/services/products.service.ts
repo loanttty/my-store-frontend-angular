@@ -41,8 +41,4 @@ export class ProductsService {
     console.log(this.cartedItems)
   }
 
-  createOrder() {
-    
-  }
-
 }

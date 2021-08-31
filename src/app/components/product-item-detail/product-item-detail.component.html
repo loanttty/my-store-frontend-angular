@@ -1,1 +1,12 @@
-<p>product-item-detail works!</p>
+<div>
+    <a routerLink="product/{{product.id}}">
+        <img src={{product.url}} />
+    </a>
+    <h3>{{product.name}}</h3>
+    <p>{{product.description}}</p>
+    <p>${{product.price}}</p>
+    <button (click)="decrement()">-</button>
+    <p>{{selectedQty}}</p>
+    <button (click)="increment()">+</button>
+    <button (click)="addToCart(product)">Add To Cart</button>
+</div>

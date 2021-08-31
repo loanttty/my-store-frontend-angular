@@ -21,8 +21,10 @@
                 <input type="submit" [disabled]="form.invalid" value="Submit">
             </form>
         </div>
-        <ng-template #noOrder>There is no order.</ng-template>
     </div>
+        <ng-template #noOrder>
+            <div>There is no order.</div>
+        </ng-template>
 </div>
 <ng-template #orderConfirmation>
     <div>
