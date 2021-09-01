@@ -29,19 +29,18 @@ export class ProductItemDetailComponent implements OnInit {
     this.route.paramMap.subscribe( params => {
       const id: number = parseInt((params.get("id") as unknown) as string)
 
-      this.cartedItems = this.productsService.getCardedItems()
+      this.cartedItems = this.productsService.getCartedItems()
       const inCartedCheck = this.cartedItems.filter( item => item.id === id)
       
       if (inCartedCheck.length === 0 ) {
         this.productsService.getProducts().subscribe( res => {
           this.product = res[id-1]
-          this.selectedQty = this.product.inCartQty
+          this.selectedQty = 0
         })
       } else {
         this.product = inCartedCheck[0]
         this.selectedQty = this.product.inCartQty
         }
-      console.log(this.selectedQty)
     })
   }
 
@@ -65,6 +64,4 @@ export class ProductItemDetailComponent implements OnInit {
       }
     }
   }
-
-
 }

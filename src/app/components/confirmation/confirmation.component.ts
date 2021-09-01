@@ -28,7 +28,7 @@ export class ConfirmationComponent implements OnInit {
   ngOnInit(): void {
     this.confirmedOrder = false
 
-    this.orderedItems = this.productsService.getCardedItems()
+    this.orderedItems = this.productsService.getCartedItems()
     
     for (let i = 0; i < this.orderedItems.length; i++) {
       this.total = this.total + this.orderedItems[i].price * this.orderedItems[i].inCartQty

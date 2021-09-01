@@ -18,10 +18,9 @@ export class ProductsService {
   addProductToCart(product: Product, selectedQty: number) {
     product["inCartQty"] = selectedQty
     this.cartedItems.push(product)
-    console.log(this.cartedItems)
   }
 
-  getCardedItems(): Product[] {
+  getCartedItems(): Product[] {
     return this.cartedItems
   }
 
@@ -32,13 +31,10 @@ export class ProductsService {
         item.inCartQty = inCartQty
       }
     }
-    console.log(this.cartedItems)
-    
   }
 
   deleteCartedItem(toBeDeletedItem: Product) {
     this.cartedItems = this.cartedItems.filter( item => item.id !== toBeDeletedItem.id)
-    console.log(this.cartedItems)
   }
 
 }

@@ -32,9 +32,12 @@ export class CartItemComponent implements OnInit {
 
   decrement(product: Product) {
     this.inCartQty = product.inCartQty
-    this.inCartQty > 0 ? this.inCartQty -=1 : this.inCartQty
+    
+    this.inCartQty > 0 && (this.inCartQty -=1)
+    this.inCartQty === 0 && this.deleteItem.emit(product) // quantity reduced to 0 equals being deleted from cart
+  
     this.productsService.updateCartedItem(product.id,this.inCartQty)
-    this.changeInCart.emit(this.inCartQty)
+    this.changeInCart.emit(this.inCartQty) //to update the total in cart component
   }
   
   increment(product: Product) {

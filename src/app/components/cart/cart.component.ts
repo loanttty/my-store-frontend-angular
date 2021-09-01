@@ -19,7 +19,7 @@ export class CartComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.cartedItems = this.productsService.getCardedItems()
+    this.cartedItems = this.productsService.getCartedItems()
     console.log(this.cartedItems)
     for (let i = 0; i < this.cartedItems.length; i++) {
       this.total = this.total + this.cartedItems[i].price * this.cartedItems[i].inCartQty
@@ -38,6 +38,7 @@ export class CartComponent implements OnInit {
 
   changeInCart(prodQty:number): void {
     if (this.inCartChange !== prodQty) {
+      this.inCartChange = prodQty
       this.total = 0
       for (let i = 0; i < this.cartedItems.length; i++) {
         this.total = this.total + this.cartedItems[i].price * this.cartedItems[i].inCartQty

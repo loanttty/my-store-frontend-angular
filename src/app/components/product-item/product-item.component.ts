@@ -27,7 +27,12 @@ export class ProductItemComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.cartedItems = this.productsService.getCardedItems()
+    this.cartedItems = this.productsService.getCartedItems()
+    if (this.product.inCartQty > 0) {
+      this.selectedQty = this.product.inCartQty
+    } else if (this.product.inCartQty === 0 || this.product.inCartQty === undefined) {
+      this.selectedQty = 0
+    }
   }
 
   decrement() {
