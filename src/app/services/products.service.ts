@@ -37,4 +37,8 @@ export class ProductsService {
     this.cartedItems = this.cartedItems.filter( item => item.id !== toBeDeletedItem.id)
   }
 
+  clearCart() {
+    this.cartedItems = []
+  }
+
 }

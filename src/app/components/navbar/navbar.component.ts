@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {MatBadgeModule} from '@angular/material'
+import { ProductsService } from 'src/app/services/products.service';
 
 @Component({
   selector: 'app-navbar',
@@ -7,10 +7,22 @@ import {MatBadgeModule} from '@angular/material'
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+  noOfCartedItems: number
 
-  constructor() { }
+  constructor(private productsService: ProductsService) { 
+    this.noOfCartedItems = 0
+  }
 
   ngOnInit(): void {
+    const cartedItems = this.productsService.getCartedItems()
+    this.noOfCartedItems = cartedItems.length
+  }
+
+  ngDoCheck() {
+    const cartedItemsChange = this.productsService.getCartedItems()
+    cartedItemsChange.length !== this.noOfCartedItems 
+    ? this.noOfCartedItems = cartedItemsChange.length
+    : this.noOfCartedItems
   }
 
 }

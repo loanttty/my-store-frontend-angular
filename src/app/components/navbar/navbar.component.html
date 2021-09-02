@@ -1,5 +1,10 @@
 <nav class="navigation">
     <a routerLink="/">Home</a>
     <br />
-    <a routerLink="/cart">Cart</a>
+    <a routerLink="/cart">
+        <span mat-raised-button color="primary" 
+            matBadge={{noOfCartedItems}} 
+            matBadgeColor="accent"
+            matBadgeOverlap="false">Cart</span>
+    </a>
 </nav>

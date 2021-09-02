@@ -1,6 +1,5 @@
 <div>
     <h2>{{cartedItem.name}}</h2>
-    <p>{{cartedItem.description}}</p>
     <p>${{cartedItem.price}}</p>
     <button (click)="decrement(cartedItem)">-</button>
     <p>{{inCartQty === 0 ? cartedItem.inCartQty : inCartQty}}</p>

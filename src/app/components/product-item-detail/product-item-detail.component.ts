@@ -59,8 +59,10 @@ export class ProductItemDetailComponent implements OnInit {
       const inCartedCheck = this.cartedItems.filter ( item => item.id === product.id)
       if (inCartedCheck.length === 0 ) {
         this.productsService.addProductToCart(product,this.selectedQty)
+        alert(`${product.name} has been added to your cart`)
       } else {
         this.productsService.updateCartedItem(product.id,this.selectedQty)
+        alert(`Quantity of ${product.name} has been updated your cart`)
       }
     }
   }
