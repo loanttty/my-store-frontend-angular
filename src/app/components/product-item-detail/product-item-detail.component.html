@@ -1,10 +1,29 @@
-<div>
-    <img src={{product.url}} />
-    <h3>{{product.name}}</h3>
-    <p>{{product.description}}</p>
-    <p>${{product.price}}</p>
-    <button (click)="decrement()">-</button>
-    <p>{{selectedQty}}</p>
-    <button (click)="increment()">+</button>
-    <button (click)="addToCart(product)">Add To Cart</button>
+<div class="row justify-content-center">
+    <div class="col-md-3 .offset-md-3">
+        <img src={{product.url}} />
+    </div>
+    <div class="col-md-3">
+        <h2>{{product.name}}</h2>
+        <p>{{product.description}}</p>
+        <p>${{product.price}}</p>
+        <div class="row justify-content-center">
+            <div class="col-sm-2">
+                <button class="btn btn-primary" 
+                (click)="decrement()"
+                style="position: relative; left: 2px"
+                >-</button>
+            </div>
+            <div class="col-sm-2">
+                <p style="position: relative; top: 7px; left: 2px">{{selectedQty}}</p>
+            </div>
+            <div class="col-sm-2">
+                <button class="btn btn-primary" (click)="increment()">+</button>
+            </div>
+        </div>
+        <button class="btn btn-primary" 
+                style="display: block; margin: 15px auto;" 
+                (click)="addToCart(product)">
+                Add To Cart
+        </button>
+    </div>
 </div>

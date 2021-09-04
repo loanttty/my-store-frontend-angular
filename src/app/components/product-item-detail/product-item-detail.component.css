@@ -1,0 +1,15 @@
+img {
+    width: 300px;
+    height: 340px;
+    padding: 5px;
+    border-radius: 20px;
+}
+
+h2, p {
+    color: indigo;
+    text-align: center;
+}
+
+h2 {
+    font-size: large;
+}

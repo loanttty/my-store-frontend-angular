@@ -1,10 +1,40 @@
-<div>
-    <h2>{{cartedItem.name}}</h2>
-    <p>${{cartedItem.price}}</p>
-    <button (click)="decrement(cartedItem)">-</button>
-    <p>{{inCartQty === 0 ? cartedItem.inCartQty : inCartQty}}</p>
-    <button (click)="increment(cartedItem)">+</button>
-    <p>How much? {{inCartQty === 0 ? (cartedItem.inCartQty * cartedItem.price) : inCartQty * cartedItem.price}}</p>
-    <button (click)="deleteFromCart(cartedItem)">Delete</button>
+<div class="item row" style="margin-bottom: 40px;">
+    <img class="img col-md-4" src={{cartedItem.url}} />
+    <div class="col-md-6">
+        <h2 class="row">{{cartedItem.name}}</h2>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <button class="btn btn-primary" (click)="decrement(cartedItem)">-</button>
+                    </div>
+                    <div class="col-sm-6">
+                        <p style="display: inline; margin: 0 30px; position: relative; top: 10px">
+                            {{inCartQty === 0 
+                                ? cartedItem.inCartQty 
+                                : inCartQty}}
+                        </p>
+                    </div>
+                    <div class="col-sm-3">
+                        <button class="btn btn-primary" (click)="increment(cartedItem)">+</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <p style="display: inline; margin-left: 20px; position: relative; top: 10px">
+                    ${{inCartQty === 0 
+                        ? (cartedItem.inCartQty * cartedItem.price)
+                        : inCartQty * cartedItem.price}}
+                </p>
+            </div>
+            <div class="col-sm-3">
+                <button class="btn btn-danger" 
+                        style="display: inline" 
+                        (click)="deleteFromCart(cartedItem)">
+                        Delete
+                </button>
+            </div>
+        </div>
+    </div>
 </div>
 

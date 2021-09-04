@@ -1,11 +1,36 @@
-<h1>Your cart</h1>
-<app-cart-item *ngFor="let cartedItem of cartedItems" 
-                [cartedItem]="cartedItem" 
-                (deleteItem)="deleteItem($event)"
-                (changeInCart)="changeInCart($event)"
-                ></app-cart-item>
-<div *ngIf="total > 0; else emptyCart">
-    <h3>Total:{{total | number: '1.1-2'}}</h3>
-    <button (click)="checkout()">Check Out</button>
+<div class="background">
+    <h1>Your cart</h1>
+    <app-cart-item *ngFor="let cartedItem of cartedItems" 
+                    [cartedItem]="cartedItem" 
+                    (deleteItem)="deleteItem($event)"
+                    (changeInCart)="changeInCart($event)"
+    ></app-cart-item>
+    <div *ngIf="total > 0; else emptyCart">
+        <div class="row justify-content-end">
+            <div class="col-md-2" style="position: relative; ">
+                <h1 style="text-align: right;">
+                    Total:
+                </h1>
+            </div>
+            <div class="col-md-4">
+                <h1 style="text-align: left;">
+                    ${{total | number: '1.1-2'}}
+                </h1>
+            </div>
+        </div>
+        <div class="row justify-content-end">
+            <div class="col-md-4">
+                <button class="btn btn-danger" 
+                        style="text-align: left;" 
+                        (click)="checkout()">
+                        Check Out
+                </button>
+            </div>
+        </div>
+    </div>
+    <ng-template #emptyCart>
+        <h2>
+            There is no item in your cart. Click <a routerLink="">here</a> to continue shopping.
+        </h2>
+    </ng-template>
 </div>
-<ng-template #emptyCart>There is no item in your cart. Click <a routerLink="">here</a> to continue shopping.</ng-template>

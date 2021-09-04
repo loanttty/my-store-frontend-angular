@@ -53,6 +53,7 @@ export class ProductItemComponent implements OnInit {
       } else {
         this.productsService.updateCartedItem(product.id,this.selectedQty)
       }
+      alert(`You've added ${product.name} to your cart!`)
     }
   }
 

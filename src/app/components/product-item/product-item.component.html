@@ -1,11 +1,26 @@
-<div style="margin-bottom: 40px;">
-    <a routerLink="product/{{product.id}}">
-        <img  src={{product.url}} />
+<div class="item" style="margin-bottom: 40px;">
+    <a class="imgLink" routerLink="product/{{product.id}}">
+        <img class="img" src={{product.url}} />
     </a>
     <h3>{{product.name}}</h3>
     <p>${{product.price}}</p>
-    <button class="btn btn-primary" style="margin-right: 10px;" (click)="decrement()">-</button>
-    <p>{{selectedQty}}</p>
-    <button class="btn btn-primary" style="margin-right: 10px;" (click)="increment()">+</button>
-    <button class="btn btn-primary" style="margin-right: 10px;" (click)="addToCart(product)">Add To Cart</button>
+    <div class="row justify-content-center">
+        <div class="col-sm-3">
+            <button class="btn btn-primary" 
+                    (click)="decrement()">
+                    -
+            </button>
+        </div>
+        <div class="col-sm-2">
+            <p style="position: relative; top: 7px">{{selectedQty}}</p>
+        </div>
+        <div class="col-sm-3">
+            <button class="btn btn-primary" (click)="increment()">+</button>
+        </div>
+    </div>
+    <button class="btn btn-primary" 
+            style="display: block; margin: 15px auto;" 
+            (click)="addToCart(product)">
+            Add To Cart
+    </button>
 </div>
