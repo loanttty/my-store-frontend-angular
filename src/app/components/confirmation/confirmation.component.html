@@ -1,35 +1,43 @@
 <div *ngIf="confirmedOrder === false; else orderConfirmation">
-    <h1>Your Order</h1>
-    <ul *ngFor="let item of orderedItems">
-        <li>
-            <h3>{{item.name}}</h3>
+    <h2>Your Order</h2>
+    <ul *ngFor="let item of orderedItems" class="row justify-content-center">
+        <li class="col-sm-4 item">
+            <h2>{{item.name}}</h2>
             <p>Quantity: {{item.inCartQty}}</p>
-            <p>Sub total: {{item.inCartQty*item.price}}</p>
+            <p>Sub total: ${{item.inCartQty*item.price}}</p>
         </li>
     </ul>
     <div *ngIf="total > 0; else noOrder">
-        <h3>Total: {{total}}</h3>
+        <h1>Total: ${{total | number: '1.1-2'}}</h1>
         <div>
-            <h3>For Delivery</h3>
+            <h2>For Delivery</h2>
             <form #form="ngForm" (ngSubmit)="submitOrder()">
-                <input type="text" name="firstName" required minlength="20" [(ngModel)]="firstName" placeholder="First Name">
-                >
-                <input type="text" name="address" required minlength="20" [(ngModel)]="address" placeholder="Address">
-                >
-                <input type="text" name="creditCardNumber" required minlength="16" [(ngModel)]="cardNumber" placeholder="Credit Card Number">
-                >
-                <input type="submit" [disabled]="form.invalid" value="Submit">
+                <div class="form-group">
+                    <label for="firstName">First Name*</label>
+                    <input type="text" class="form-control" name="firstName" required minlength="8" [(ngModel)]="firstName" placeholder="First Name">
+                </div>
+                <div class="form-group">
+                    <label for="address">Address*</label>
+                    <input type="text" class="form-control"name="address" required minlength="10" [(ngModel)]="address" placeholder="Address">
+                </div>
+                <div class="form-group">
+                    <label for="creditCardNumber">Credit Card Number*</label>
+                    <input type="text" class="form-control" name="creditCardNumber" required minlength="16" [(ngModel)]="cardNumber" placeholder="Credit Card Number">
+                </div>
+                <div class="form-group" style="text-align: center; margin-top: 15px; margin-bottom: 15px">
+                    <input class="btn btn-success" type="submit" [disabled]="form.invalid" value="Submit">
+                </div>
             </form>
         </div>
     </div>
 </div>
 <ng-template #orderConfirmation>
-    <div>
-        Thanks, {{firstName}}! Your order of {{total}} has been confirmed.
+    <p>
+        Thanks, <strong>{{firstName}}</strong>! Your order of <strong>${{total}}</strong> has been confirmed.
         Please allow us 3 to 5 working days to process your order!
         Meanwhile, you can continue shopping <a routerLink="">here</a>.
-    </div>
+    </p>
 </ng-template>
 <ng-template #noOrder>
-    <div>There is no orders.</div>
+    <p>There is no orders.</p>
 </ng-template>

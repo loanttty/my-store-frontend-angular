@@ -1,0 +1,40 @@
+.item {
+    width: 520px;
+    height: 120px;
+    display: inline-flexbox;
+    align-items: center;
+    transition: all ease-in-out 200ms
+}
+
+.item:hover {
+    background-color: rgb(197, 252, 255);
+    border-radius: 5px;
+}
+
+h2, p {
+    color: indigo;
+    text-align: center;
+}
+
+h2 {
+    font-size: large;
+}
+
+li {
+    list-style: none;
+}
+
+ul {
+    padding: 0
+}
+h1 {
+    color: slateblue;
+    text-align: center;
+    text-shadow: lightskyblue;
+    font-weight: bold;
+}
+
+.form-group {
+    max-width: 520px;
+    margin: 10px auto
+}

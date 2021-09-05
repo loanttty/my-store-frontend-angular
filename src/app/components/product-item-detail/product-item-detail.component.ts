@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Product } from 'src/app/models/Product';
 import { ProductsService } from 'src/app/services/products.service';
 import { ActivatedRoute } from '@angular/router';
+import {Subject} from 'rxjs';
+import {debounceTime} from 'rxjs/operators';
+import {NgbAlert} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-product-item-detail',
@@ -9,11 +12,13 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./product-item-detail.component.css']
 })
 export class ProductItemDetailComponent implements OnInit {
+  
   product: Product
   selectedQty: number = 0
   cartedItems: Product[] = []
-
-  constructor(private productsService:ProductsService, private route:ActivatedRoute) { 
+  
+  constructor(private productsService:ProductsService, 
+              private route:ActivatedRoute) { 
     this.product = {
         id: 1,
         name: "",
@@ -22,7 +27,7 @@ export class ProductItemDetailComponent implements OnInit {
         description: "",
         inStockQty: 1,
         inCartQty: 0
-  }
+    }
   }
 
   ngOnInit(): void {
@@ -53,6 +58,7 @@ export class ProductItemDetailComponent implements OnInit {
   }
 
   addToCart(product: Product) {
+
     if (this.selectedQty === 0) {
       alert("Please select product quantity")
     } else {
@@ -65,5 +71,6 @@ export class ProductItemDetailComponent implements OnInit {
         alert(`Quantity of ${product.name} has been updated your cart`)
       }
     }
+
   }
 }
