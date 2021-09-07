@@ -35,6 +35,18 @@ export class ConfirmationComponent implements OnInit {
     }
   }
 
+  firstNameChanged(firstName: string) {
+    this.firstName = firstName
+  }
+
+  addressChanged(address: string) {
+    this.address = address
+  }
+
+  CardNoChanged(cardNumber: string) {
+    this.cardNumber = cardNumber
+  }
+
   submitOrder() {
     this.confirmedOrder = true
     this.productsService.clearCart()
